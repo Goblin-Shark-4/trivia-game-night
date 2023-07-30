@@ -1,47 +1,49 @@
 {
-    "name": "build_tools",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "NODE_ENV=production node server/server.js",
-        "build": "NODE_ENV=production webpack",
-        "dev": "webpack-dev-server --mode development --open --hot & nodemon server/server.js",
-        "gulp-prod": "node_modules/.bin/gulp prod",
-        "gulp-dev": "node_modules/.bin/gulp dev"
-    },
-    "nodemonConfig": {
-        "ignore": [
-            "build",
-            "client"
-        ]
-    },
-    "author": "CodesmithLLC https://github.com/CodesmithLLC <hello@codesmith.io>",
-    "license": "ISC",
-    "dependencies": {
-        "@reduxjs/toolkit": "^1.9.5",
-        "express": "^4.18.2",
-        "mongoose": "^7.4.1",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-redux": "^8.1.2",
-        "react-router-dom": "^6.14.2",
-        "redux": "^4.2.1",
-        "webpack": "^5.88.2"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.22.9",
-        "@babel/preset-env": "^7.22.9",
-        "@babel/preset-react": "^7.22.5",
-        "babel-loader": "^9.1.3",
-        "css-loader": "^6.8.1",
-        "html-webpack-plugin": "^5.5.3",
-        "mini-css-extract-plugin": "^2.7.6",
-        "node-sass": "^9.0.0",
-        "nodemon": "^2.0.22",
-        "sass-loader": "^13.3.2",
-        "style-loader": "^3.3.3",
-        "webpack-cli": "^4.10.0",
-        "webpack-dev-server": "^4.15.1"
-    }
+  "name": "build_tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon server/server.js",
+    "watch": "webpack --watch --mode=development",
+    "build": "webpack --mode=production",
+    "dev": "webpack-dev-server --mode development --open --hot",
+    "gulp-prod": "node_modules/.bin/gulp prod",
+    "gulp-dev": "node_modules/.bin/gulp dev"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "build",
+      "client"
+    ]
+  },
+  "author": "CodesmithLLC https://github.com/CodesmithLLC <hello@codesmith.io>",
+  "license": "ISC",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.14.2",
+    "redux": "^4.2.1",
+    "webpack": "^5.88.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.8.1",
+    "html-webpack-plugin": "^5.5.3",
+    "mini-css-extract-plugin": "^2.7.6",
+    "node-sass": "^9.0.0",
+    "nodemon": "^2.0.22",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.15.1"
+  }
 }

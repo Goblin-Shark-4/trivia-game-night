@@ -6,7 +6,7 @@ module.exports = {
   entry: './client/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, './build'),
     // publicPath: ''
   },
   mode: process.env.NODE_ENV,
@@ -22,9 +22,14 @@ module.exports = {
           },
         },
       },
+      // {
+      //   test: /\.s[ac]ss$/i, ///also: /\.s[ac]ss$/i
+      //   use: ['style-loader', 'css-loader', 'sass-loader'],
+      // },
       {
-        test: /\.s[ac]ss$/i, ///also: /\.s[ac]ss$/i
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /.(css|scss)$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
@@ -36,14 +41,17 @@ module.exports = {
       directory: path.resolve(__dirname, './build'),
       publicPath: '/',
     },
-    // compress: true,
+    compress: true,
     port: 8080,
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/questions': 'http://localhost:3000',
+      // pathRewrite: { '^/api': '' },
+      // changeOrigin: true,
     },
   },
   plugins: [
     new HtmlWebpackPlugin({
+      filename: 'index.html',
       template: './client/index.html',
     }),
   ],

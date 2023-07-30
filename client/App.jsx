@@ -1,5 +1,6 @@
 import React from 'react';
-import SignUp from './components/Signup';
+// import SignUp from './components/Signup';
+import Quiz from './components/Quiz';
 const App = (props) => {
   return (
     <div>
@@ -7,7 +8,8 @@ const App = (props) => {
         <h1>Hello From the Frontend!!!!!!!!!!</h1>
       </div>
       <div>
-        <SignUp />
+        {/* <SignUp /> */}
+        <Quiz />
       </div>
     </div>
   );

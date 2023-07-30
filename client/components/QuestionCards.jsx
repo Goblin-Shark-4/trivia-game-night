@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './QuestionCard.css';
+import styles from '../Styles/QuestionCard.css';
+
 const QuestionCard = ({ question }) => {
   const [showQuestion, setShowQuestion] = useState(true);
 
