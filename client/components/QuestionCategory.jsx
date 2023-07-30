@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionCard from './QuestionCategory';
+import QuestionCard from './QuestionCards';
 
 const QuestionCategory = ({ category, questions }) => {
   return (
