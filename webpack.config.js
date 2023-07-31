@@ -45,8 +45,9 @@ module.exports = {
     port: 8080,
     proxy: {
       '/questions': 'http://localhost:3000',
-      // pathRewrite: { '^/api': '' },
-      // changeOrigin: true,
+      '/verifyJwt': 'http://localhost:3000',
+      '/log-in': 'http://localhost:3000',
+      '/sign-up': 'http://localhost:3000'
     },
   },
   plugins: [

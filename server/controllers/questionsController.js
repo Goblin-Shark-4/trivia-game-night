@@ -20,7 +20,7 @@ questionsController.getQuestions = (req, res, next) => {
         if (question.category === 'Sports') {
           questions.sports.push(question);
         } else if (question.category === 'Film') {
-          questions.film.push(questions);
+          questions.film.push(question);
         } else if (question.category === 'Music') {
           questions.music.push(question);
         } else if (question.category === 'Television') {
@@ -30,8 +30,9 @@ questionsController.getQuestions = (req, res, next) => {
         }
       });
 
-      // console.log(questions, 'questions');
+     
       res.locals.questions = questions;
+      console.log('questions', questions);
 
       return next();
     })
