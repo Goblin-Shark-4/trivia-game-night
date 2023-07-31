@@ -1,4 +1,19 @@
 /* Add your overall styling for the App component here */
+
+
+
+
+* {
+  box-sizing: border-box;
+
+}
+
+#quiz {
+  display: flex;
+  flex-direction: column;
+  /* align-items: ; */
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -32,20 +47,27 @@ body {
 .category {
   background-color: #007bff;
   color: #fff;
-  padding: 10px;
+  padding: 10px;;
   text-align: center;
   font-weight: bold;
+  font-size: 28px;
+  border-radius: 10px;
+
 }
 
 .question-card {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
-  padding: 20px;
+  background-color: rgba(0, 123, 255, 0.7); /* Set the alpha value to 0 for full transparency */
+  color: #fff;
+  text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+  /* padding: 20px; */
   text-align: center;
   cursor: pointer;
   transition: transform 0.2s ease;
+  width: 8vw;
+  height: 8vw;
 }
 
 .question-card.flipped {
@@ -59,8 +81,28 @@ body {
 .back {
   display: flex;
   flex-direction: column;
+  
 }
 
 .back p {
   margin: 10px 0;
 }
+
+
+main {
+  display: flex;
+
+}
+
+#scoreboard {
+  padding: 1em;
+}
+
+h1, h2 {
+  color: white;
+}
+
+h1 {
+  padding-left: 1em;
+}
+
