@@ -4,16 +4,11 @@ import '../Styles/WinCondition.css' // this will be neon color
 import Alex from '../assets/AlexTrebek.jpg'
 import Music from '../assets/CongratulationsSnip.mp3'
 
-const WinCondition = ({score}) => {
-  const [hasWon, setHasWon] = useState(false);
+const WinCondition = ({score, resetGame, hasWon}) => {
+  console.log(resetGame)
   const [play, {stop}] = useSound(Music);
 
-  useEffect(() => {
-    if (score >= 10000) {
-      setHasWon(true);
-    }
-  }, [score]);
-
+  
   useEffect(() => {
       if (hasWon) {
         play();
@@ -22,20 +17,14 @@ const WinCondition = ({score}) => {
         }
       }
     }, [play, stop])
-
+    
   return (
-    <div>
-      {hasWon && (
-        <div className = "win-container">
-          <h2 className="neon-text"> Congratulations!  You've Won! </h2>
-          <img src={Alex} alt="Alex Trebek" />
-          <audio autoPlay loop>
-            <source src={Music} type="audio/mp3" />
-            </audio>
-            <button onClick={resetGame}> Play Again</button>
-            </div>
-      )}
-      </div>
+    <div className = "win-container">
+      <h2 className="neon-text"> Congratulations!  You've Won! </h2>
+      <img id="alex" src={Alex} alt="Alex Trebek" />
+      <button id="playAgain" onClick={resetGame}> Play Again</button>
+    </div>
+  
   );
 };
 

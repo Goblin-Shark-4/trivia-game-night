@@ -14,46 +14,45 @@ const Quiz = ({user}) => {
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
   const [score, setScore] = useState(0);
   const points = { easy: 1000, medium: 3000, hard: 5000 };
-  const [showResetQuiz, setShowResetQuiz] = useState(false)
   const navigate = useNavigate();
+  const [hasWon, setHasWon] = useState(false);
+  const [newGame, setNewGame] = useState(false);
+
+  const resetGame = () => {
+    console.log('reset game')
+    setQuizQuestions([]);
+    setQuestion({});
+    setAnsweredQuestions([]);
+    setScore(0);
+    setHasWon(false)
+    setNewGame(true)
+    navigate('/')
+  }
+
+  useEffect(() => {
+    if (score >= 10000) {
+      setHasWon(true);
+      navigate('/win')
+    }
+  }, [score]);
   
   // const { sports, film, geography, music, television}  = quizQuestions;
-  // answeredQuestions.forEach(id => {
-  //   const ele = document.getElementById(id);
-  //   console.log(ele, 'ele');
-  //   ele.classList.add('hideCard');
-  // })
 
-  const handleQuestionClick = (question, id) => {
+  const handleQuestionClick = (question) => {
     setQuestion(question);
-    console.log(id,'id')
-    setAnsweredQuestions((prev) => [...prev, id])
+    setAnsweredQuestions((prev) => [...prev, question.question])
     navigate('/card');
   }
 
   
   const handleAnswerClick = (question, answer) => {
-    
   
     if (question.correct_answer === answer) {
       setScore((prevScore) => prevScore + points[question.difficulty]);
-      console.log('answer', answer);
-      console.log('score', score)
       navigate('/');
     }
-
-    // if(newScore >= 10000){
-    //   setShowResetQuiz(true);
-    //   setScore(0);
-    // }
-    // else{
-    //   nagtivate('/')
-    // }
-    // setAnsweredQuestions((prevAnswered) => [...prevAnswered, question._id])
   }
   
-  console.log('score2', score)
-
   const handleDeleteAccount = () => {
     fetch('/delete', {
       method: 'POST',
@@ -80,20 +79,17 @@ const Quiz = ({user}) => {
   useEffect(() => {
       fetch('/questions')
       .then(response => response.json())
-      .then(data => setQuizQuestions(data))
+      .then(data => {
+        setQuizQuestions(data) 
+        setNewGame(false)
+      })
       .catch(error => {
         console.error('Error fetching quiz questions:', error);
       })
-  }, []);
-
+  }, [newGame]);
   
-  // finding the unique categories
-  console.log(quizQuestions);
-  // const categories = Array.from(
-  //   new Set(quizQuestions.map((quiz) => quiz.category))
-  // );
   if (!Object.keys(quizQuestions).length) return;
-  // console.log(sports, 'sports')
+ 
   return (
     <div id='quiz'>
       <header>
@@ -106,7 +102,7 @@ const Quiz = ({user}) => {
       <main>
         <nav id='scoreboard'>
           <h2> <Scoreboard score={score} /></h2>
-            <WinCondition score ={score} />
+          
         </nav>
         
           <Routes>
@@ -118,17 +114,18 @@ const Quiz = ({user}) => {
                       <div className='category'>
                       {category}
                     </div>
-                  {console.log('cat', category)}
                   {quizQuestions[category].map((question,i) => (
-                    <QuestionCard key={crypto.randomUUID()} id={crypto.randomUUID()} question={question} handleQuestionClick={handleQuestionClick} setQuestion={setQuestion} />))
+                    (!answeredQuestions.includes(question.question) && <QuestionCard key={crypto.randomUUID()} question={question} handleQuestionClick={handleQuestionClick} setQuestion={setQuestion} />) || <div className='question-card'></div>
+                    ))
                   }
                   </div>
                 ))}
               </div>
             } />
             
-              <Route path={'/card'} element={<Question question={questionState} handleAnswerClick={handleAnswerClick} />} />
-            </Routes>
+              <Route path={'/card'} element={<Question question={questionState} handleAnswerClick={handleAnswerClick} points={points[questionState.difficulty]}/>} />
+            <Route path={'/win'} element={<WinCondition score={score}  resetGame={resetGame} hasWon={hasWon} />} />
+          </Routes>
               
       </main>
     </div>

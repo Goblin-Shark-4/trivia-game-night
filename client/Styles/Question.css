@@ -1,5 +1,6 @@
 .question-container {
-  
+    display: flex;
+    flex-direction: column;
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -26,6 +27,12 @@
     margin-top: 20px;
     
   }
+  .timer {
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+  }
   
   .answer {
     cursor: pointer;
@@ -43,3 +50,4 @@
     background-color: #0074d9;
     color: #fff;
   }
+  

@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import useSound from 'use-sound';
 import jeopardyMusic from '../assets/jeopardy.mp3'
 import '../Styles/Question.css'
+import Timer from './Time';
 
 
 const shuffleArray = (array) => {
@@ -16,26 +17,34 @@ const shuffleArray = (array) => {
 };
 
 
-const Question = ({ question, handleAnswerClick }) => {
+const Question = ({ question, handleAnswerClick, points }) => {
     const [play, {stop}] = useSound(jeopardyMusic);
+    
     useEffect(() => {
         play();
         return function cleanup() {
             stop();
         }
     }, [play, stop])
-    
+
+    // const handleBtnClick = () => {
+        
+    // }
+
     const answers = shuffleArray([question.correct_answer, ...question.incorrect_answers]);
     
     return (
-        <div className='question-container'>
-            <h1 className='question-title'>{question.question}</h1>
-            <div className ='answer-container'>
-            {answers.map((answer, i) => {
-        return <button className='answer' key={i} onClick={(e) => handleAnswerClick(question, answer)}>{answer}</button>
-    })}
+        <>  
+            <Timer points={points} />
+            <div className='question-container'>
+                <h1 className='question-title'>{question.question}</h1>
+                <div className ='answer-container'>
+                    {answers.map((answer, i) => {
+                    return <button className='answer' key={i} onClick={(e) => handleAnswerClick(question, answer)}>{answer}</button>
+                    })}
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
