@@ -1,8 +1,26 @@
 import React, { useState } from 'react';
 import styles from '../Styles/QuestionCard.css';
 
+const shuffleArray = (array) => {
+
+  const shuffledArray = [...array];
+
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+};
+
 const QuestionCard = ({ question }) => {
   const [showQuestion, setShowQuestion] = useState(true);
+  const points = { easy: 1000, medium: 3000, hard: 5000 };
+
+  // Combine correct_answer and incorrect_answers into a single array
+  const answers = [question.correct_answer, ...question.incorrect_answers];
+
+  // Shuffle the answers array to display them in random order
+  const shuffledAnswers = shuffleArray(answers);
 
   return (
     <div
@@ -10,15 +28,15 @@ const QuestionCard = ({ question }) => {
       onClick={() => setShowQuestion(!showQuestion)}
     >
       <div className='front'>
-        <h3>{question.category}</h3>
-        <h2>{question.difficulty}</h2>
+        <h2>{points[question.difficulty]}</h2>
       </div>
       <div className='back'>
         <h3>{question.question}</h3>
         {showQuestion ? null : (
           <div>
-            <p>Correct Answer: {question.correct_answer}</p>
-            <p>Incorrect Answers: {question.incorrect_answers.join(', ')}</p>
+            {shuffledAnswers.map((answer, index) => (
+              <p key={index}>{answer}</p>
+            ))}
           </div>
         )}
       </div>

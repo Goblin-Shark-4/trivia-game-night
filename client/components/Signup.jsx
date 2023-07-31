@@ -1,23 +1,48 @@
 import React from 'react';
 import { useState } from 'react';
-import styles from '../Styles/LoginStyles.css';
+import { useNavigate } from 'react-router-dom';
+import '../Styles/LoginStyles.css';
 
-export default function SignUp() {
+export default function SignUp({ setLoggedIn }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSignUp = () => {
     console.log('Type Username here', username);
     console.log('Type Password here', password);
     console.log('Button has been clicked to login');
-  };
+    fetch('/log-in', {
+      method: 'POST',
+      headers: {
+        'Content-Type':
+        'application/json',
+      },
+      body: JSON.stringify({
+        username, password
+      })
+    })
+    .then(response => {
+      if (response.ok) {
+        response.json()
+        .then(data => {
+          localStorage.setItem('triviaJwtToken', data.jwtToken);
+          setLoggedIn(true);
+          return navigate('/');
+        })
+        .catch(err => next({}))
+      }
+    })
+    .catch(err => next({}))
+      
+    }
 
   return (
-    <div className={styles.login}>
-      <h1 className={styles.logTitle}>Log In</h1>
+    <div className='login'>
+      <h1 className='logTitle'>Log In</h1>
       <div>
         <input
-          className={styles.username}
+          className='username'
           type='username'
           placeholder='username'
           value={username}
@@ -26,7 +51,7 @@ export default function SignUp() {
       </div>
       <div>
         <input
-          className={styles.password}
+          className='password'
           type='password'
           placeholder='password'
           value={password}

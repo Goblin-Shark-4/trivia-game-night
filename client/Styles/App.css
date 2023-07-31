@@ -1,3 +1,4 @@
+/* Add your overall styling for the App component here */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -10,4 +11,56 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
+}
+
+.header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 columns for categories */
+  gap: 10px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+.category {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.question-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.question-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  width: 100%;
+}
+
+.back {
+  display: flex;
+  flex-direction: column;
+}
+
+.back p {
+  margin: 10px 0;
 }

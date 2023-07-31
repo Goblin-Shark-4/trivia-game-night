@@ -1,5 +1,5 @@
 {
-  "name": "build_tools",
+  "name": "trivia_game_night",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -22,14 +22,17 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.14.2",
-    "redux": "^4.2.1",
-    "webpack": "^5.88.2"
+    "redux": "^4.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
@@ -43,6 +46,7 @@
     "nodemon": "^2.0.22",
     "sass-loader": "^13.3.2",
     "style-loader": "^3.3.3",
+    "webpack": "^5.88.2",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.15.1"
   }
