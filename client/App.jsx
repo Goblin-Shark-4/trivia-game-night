@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './components/Signup';
 import Quiz from './components/Quiz';
-
+import './Styles/App.css';
 
 
 

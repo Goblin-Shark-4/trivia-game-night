@@ -1,10 +1,8 @@
-/* QuestionCard.css */
-
+/* Update the question card style to have a background color and box-shadow */
 .question-card {
-  position: relative ;
-  width: 300px;
-  height: 250px;
-  background-color: #f0f0f0;
+  width: 10em;
+  height: 8em;
+  background-color: rgba(0, 124, 255, 0.8); /* Change the alpha value to adjust transparency */
   border: 2px solid;
   border-radius: 10px;
   cursor: pointer;
@@ -14,7 +12,6 @@
 
 .question-card .front,
 .question-card .back {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -24,28 +21,28 @@
   align-items: center;
   text-align: center;
   padding: 10px;
-  font-size: 12px;
-  color: #000;
+  font-size: 34px;
   border-radius: 10px;
   backface-visibility: hidden;
 }
 
-.question-card .back {
-  transform: rotateY(180deg);
-  background-color: #007bff;
+/* Add a neon-style effect to the front side */
+.question-card .front {
+  /* Add more text-shadow layers to increase the glow effect */
+  background-color: rgba(41, 52, 103, 0); /* Set the alpha value to 0 for full transparency */
   color: #fff;
-  /* width: 100vw;
-  height: 100vh; */
+  text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
 }
 
-.question-card.flipped .front {
-  transform: rotateY(180deg); /* Flip the front side to the back */
+/* Add a neon-style effect to the back side */
+.question-card .back {
+  background-color: #00ffcc;
+  color: #000;
+  text-shadow: 0 0 10px #007bff, 0 0 20px #007bff, 0 0 30px #007bff;
+  /* Add more text-shadow layers to increase the glow effect */
 }
 
-.question-card.flipped .back {
-  transform: rotateY(0deg); /* Flip the back side to the front */
-}
 
-.question-card:hover {
-  z-index:9999;
+.question-card.flipped {
+  transform: rotateY(180deg);
 }

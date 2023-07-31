@@ -1,4 +1,13 @@
-
+body {
+  /* background-color: #007bff; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  background-image: url('https://media.istockphoto.com/id/1155472165/vector/trivia-night-neon-sign-vector-quiz-time-design-template-neon-sign-light-banner-neon.jpg?s=612x612&w=0&k=20&c=P63yE3UWUgQBUuzwRSHnHVeVB6Fp40smoWgIA0QJIrQ=');
+  font-family: 'Arial', sans-serif;
+}
 .jeopardy-board {
   display: grid;
   grid-template-columns: repeat(6, 1fr); /* 6 columns for categories */
@@ -6,6 +15,7 @@
   width: 100%;
   max-width: 1200px;
   margin-top: 20px;
+  margin: auto;
 }
 
 .category {
@@ -21,5 +31,5 @@
   flex-direction: column;
   gap: 10px;
   padding: 10px;
-  background-color: #f0f0f0;
+  background-color: transparent;
 }

@@ -8,25 +8,25 @@ questionsController.getQuestions = (req, res, next) => {
     .then((response) => {
       // console.log(response, 'response');
       const questions = {
-        sports: [],
-        film: [],
-        music: [],
-        television: [],
-        geography: [],
+        SPORTS: [],
+        FILM: [],
+        MUSIC: [],
+        TELEVISION: [],
+        GEOGRAPHY: [],
       };
 
       response.forEach((question) => {
         // console.log('11111', question);
         if (question.category === 'Sports') {
-          questions.sports.push(question);
+          questions.SPORTS.push(question);
         } else if (question.category === 'Film') {
-          questions.film.push(question);
+          questions.FILM.push(question);
         } else if (question.category === 'Music') {
-          questions.music.push(question);
+          questions.MUSIC.push(question);
         } else if (question.category === 'Television') {
-          questions.television.push(question);
+          questions.TELEVISION.push(question);
         } else if (question.category === 'Geography') {
-          questions.geography.push(question);
+          questions.GEOGRAPHY.push(question);
         }
       });
 
