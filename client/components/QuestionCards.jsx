@@ -12,8 +12,8 @@ const shuffleArray = (array) => {
   return shuffledArray;
 };
 
-const QuestionCard = ({ id, question, handleQuestionClick, setQuestion }) => {
-  const [showQuestion, setShowQuestion] = useState(true);
+const QuestionCard = ({ question, handleQuestionClick, setQuestion }) => {
+  const [timer, setTimer] = useState(20);
   const points = { easy: 1000, medium: 3000, hard: 5000 };
 
   // Combine correct_answer and incorrect_answers into a single array
@@ -24,23 +24,12 @@ const QuestionCard = ({ id, question, handleQuestionClick, setQuestion }) => {
   {/* onClick={() => setShowQuestion(!showQuestion)} */}
   return (
     <div
-      className={`question-card ${!showQuestion && 'flipped'}`}
-      id={id}
-      onClick={() => handleQuestionClick(question, id)}
+      className={'question-card'}
+      onClick={() => handleQuestionClick(question)}
     >
       <div className='front'>
         <h2>{points[question.difficulty]}</h2>
       </div>
-      {/* <div className='back'>
-        <h3>{question.question}</h3>
-        {showQuestion ? null : (
-          <div>
-            {shuffledAnswers.map((answer, index) => (
-              <p key={index}>{answer}</p>
-            ))}
-          </div>
-        )}
-      </div> */}
     </div>
   );
 };
