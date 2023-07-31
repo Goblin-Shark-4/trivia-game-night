@@ -33,7 +33,8 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.14.2",
-    "redux": "^4.2.1"
+    "redux": "^4.2.1",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",

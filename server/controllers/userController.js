@@ -50,4 +50,16 @@ userController.addUser = (req, res, next) => {
     }));
 };
 
+userController.deleteUser = (req, res, next) => {
+    const { username } = req.body;
+    console.log('username', username)
+
+    User.deleteOne({username})
+    .then(res => {
+        console.log('res', res);
+        return next();
+    })
+    .catch(err => next({}))
+}
+
 module.exports = userController;

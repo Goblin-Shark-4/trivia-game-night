@@ -12,7 +12,7 @@ const shuffleArray = (array) => {
   return shuffledArray;
 };
 
-const QuestionCard = ({ question, handleQuestionClick, setQuestion }) => {
+const QuestionCard = ({ id, question, handleQuestionClick, setQuestion }) => {
   const [showQuestion, setShowQuestion] = useState(true);
   const points = { easy: 1000, medium: 3000, hard: 5000 };
 
@@ -25,7 +25,8 @@ const QuestionCard = ({ question, handleQuestionClick, setQuestion }) => {
   return (
     <div
       className={`question-card ${!showQuestion && 'flipped'}`}
-      onClick={() => handleQuestionClick(question)}
+      id={id}
+      onClick={() => handleQuestionClick(question, id)}
     >
       <div className='front'>
         <h2>{points[question.difficulty]}</h2>

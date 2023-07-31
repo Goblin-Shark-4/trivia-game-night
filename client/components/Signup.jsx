@@ -30,16 +30,16 @@ export default function SignUp({ setLoggedIn }) {
           setLoggedIn(true);
           return navigate('/');
         })
-        .catch(err => next({}))
+        .catch(err => console.error(err))
       }
     })
-    .catch(err => next({}))
+    .catch(err => console.error(err))
       
     }
 
   return (
     <div className='login'>
-      <h1 className='logTitle'>Log In</h1>
+      <h1 className='logTitle'>Goblin Sharks Trivia</h1>
       <div>
         <input
           className='username'

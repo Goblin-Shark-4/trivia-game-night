@@ -32,7 +32,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i, 
+        test: /\.(jpe?g|png|gif|svg|mp3)$/i, 
         loader: 'file-loader',
         // options: {
         //   name: '/public/icons/[name].[ext]'
@@ -54,7 +54,8 @@ module.exports = {
       '/questions': 'http://localhost:3000',
       '/verifyJwt': 'http://localhost:3000',
       '/log-in': 'http://localhost:3000',
-      '/sign-up': 'http://localhost:3000'
+      '/sign-up': 'http://localhost:3000',
+      '/delete': 'http://localhost:3000'
     },
   },
   plugins: [

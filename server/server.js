@@ -40,6 +40,10 @@ app.post('/sign-up', userController.addUser, authController.setJwtToken, (req, r
   return res.status(200).json(res.locals.secret)
 })
 
+app.delete('/delete', userController.deleteUser, (req, res) => {
+  console.log('slafjks;')
+  return res.status(200).json({})
+})
 
 app.get('/questions', questionsController.getQuestions, (req, res) => {
   console.log('Change', res.locals);

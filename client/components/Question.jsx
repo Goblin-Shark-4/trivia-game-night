@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import useSound from 'use-sound';
+import jeopardyMusic from '../assets/jeopardy.mp3'
 import '../Styles/Question.css'
+
 
 const shuffleArray = (array) => {
 
@@ -14,7 +17,14 @@ const shuffleArray = (array) => {
 
 
 const Question = ({ question, handleAnswerClick }) => {
-
+    const [play, {stop}] = useSound(jeopardyMusic);
+    useEffect(() => {
+        play();
+        return function cleanup() {
+            stop();
+        }
+    }, [play, stop])
+    
     const answers = shuffleArray([question.correct_answer, ...question.incorrect_answers]);
     
     return (
@@ -24,7 +34,7 @@ const Question = ({ question, handleAnswerClick }) => {
             {answers.map((answer, i) => {
         return <button className='answer' key={i} onClick={(e) => handleAnswerClick(question, answer)}>{answer}</button>
     })}
-    </div>
+            </div>
         </div>
     )
 }
