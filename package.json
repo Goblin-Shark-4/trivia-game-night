@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon server/server.js",
-    "watch": "webpack --watch --mode=development",
-    "build": "webpack --mode=production",
-    "dev": "webpack-dev-server --mode development --open --hot",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node server/server.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development nodemon server/server.js & NODE_ENV=development webpack serve",
     "gulp-prod": "node_modules/.bin/gulp prod",
     "gulp-dev": "node_modules/.bin/gulp dev"
   },
