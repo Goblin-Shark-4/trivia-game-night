@@ -15,8 +15,7 @@ app.use(express.json());
 app.use(cors());
 app.use(cors({ origin: '/questions' }));
 mongoose
-  .connect(
-    'mongodb+srv://dbUserDarius:naF0xDjsXhAaOaHE@cluster0.pjxxpw9.mongodb.net/',
+  .connect(process.env.MONGO_URI,
     {
       useUnifiedTopology: true,
 
