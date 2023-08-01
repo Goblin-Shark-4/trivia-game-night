@@ -7,7 +7,7 @@
     "server": "nodemon server/server.js",
     "watch": "webpack --watch --mode=development",
     "build": "webpack --mode=production",
-    "dev": "webpack-dev-server --mode development --open --hot",
+    "dev": "NODE_ENV=development nodemon server/server.js & NODE_ENV=development webpack serve --open",
     "gulp-prod": "node_modules/.bin/gulp prod",
     "gulp-dev": "node_modules/.bin/gulp dev"
   },
