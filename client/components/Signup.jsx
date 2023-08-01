@@ -8,7 +8,7 @@ export default function SignUp({ setLoggedIn }) {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSignUp = () => {
+  const handleLogin = () => {
     console.log('Type Username here', username);
     console.log('Type Password here', password);
     console.log('Button has been clicked to login');
@@ -83,7 +83,7 @@ export default function SignUp({ setLoggedIn }) {
           onChange={(e) => setPassword(e.target.value)}
         ></input>
         <div>
-          <button onClick={handleSignUp}>Login</button>
+          <button onClick={handleLogin}>Login</button>
           <button className='createAcct' onClick={handleCreateAccount}>Create Account</button>
         </div>
       </div>

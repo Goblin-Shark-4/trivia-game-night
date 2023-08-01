@@ -12,7 +12,6 @@ export const gameSlice = createSlice({
     add_user: (state, action) => {
         state.users.push({user: action.payload})
     }
-
 })
 
 
