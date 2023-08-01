@@ -1,0 +1,49 @@
+.login {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #4800b3;
+  border-radius: 5px;
+  background-color: rgba(200, 200, 200, 0);
+  box-shadow: 0 0 10px #f200fffb, 0 0 20px #d400ff, 0 0 30px #9500ff; ;
+}
+
+.logTitle {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: rgba(41, 52, 103, 0); /* Set the alpha value to 0 for full transparency */
+  color: #fff;
+  text-shadow: 0 0 10px #00aeff, 0 0 20px #0055ff, 0 0 30px #0088ff;
+}
+
+.username,
+.password {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #000ed9;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4800b3;
+}
+
+.createAcct {
+  margin-top: 2em;
+}

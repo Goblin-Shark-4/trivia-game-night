@@ -1,0 +1,50 @@
+/* WinCondition.css */
+
+ .win-container {
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+} 
+
+#alex {
+  border: 2px solid #00ffcc;
+}
+.neon-text {
+  font-size: 36px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+}
+
+/* Customize the glowing effect */
+  .neon-text::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc, 0 0 60px #00ffcc;
+  opacity: 0;
+  animation: glow 1s ease-in-out infinite;
+} 
+
+@keyframes glow {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#playAgain {
+  color: white
+}
+
+#playAgain:hover {
+  background-color: #4800b3;
+}  

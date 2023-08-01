@@ -1,0 +1,82 @@
+body {
+  /* background-color: #007bff; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  background-image: url('https://nextrestaurants.com/wp-content/uploads/2019/07/Restaurants-TriviaNights-Marketing.png');
+  font-family: 'Arial', sans-serif;
+}
+.jeopardy-board {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 columns for categories */
+  gap: 10px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+  margin: auto;
+}
+
+.category {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.questions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: transparent;
+}
+
+.scoreboard {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(41, 52, 103, 0); /* Set the alpha value to 0 for full transparency */
+  color: #fff;
+  text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+header > div {
+  display: flex;
+  flex-direction: column;
+}
+
+#logOffBtn {
+  border-radius: 5px;
+  background-color: rgba(220,220,220,.8);
+}
+
+#logOffBtn:hover {
+  background-color: rgba(20,20,20,.8);
+  color: white;
+  cursor: pointer;
+}
+
+#deleteAcctBtn {
+  border-radius: 0 0 0 10px;
+  background-color: rgba(220,220,220,.8);
+}
+
+#deleteAcctBtn:hover {
+  background-color: rgb(255, 0, 0);
+  width: 8em;
+  height: 3em;
+  color: white;
+  cursor: pointer;
+}
+
+.hideCard {
+  display: none;
+}

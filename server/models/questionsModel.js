@@ -1,32 +1,16 @@
 const mongoose = require('mongoose');
-
-const MONGO_URI = ''  //link to mongo database
-
-mongoose.connect(MONGO_URI, {
-  // options for the connect method to parse the URI
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  // sets the name of the DB that our collections are part of
-  dbName: 'starwars'
-})
-  .then(() => console.log('Connected to Mongo DB.'))
-  .catch(err => console.log(err));
-
 const Schema = mongoose.Schema;
 
 // sets a schema for the 'species' collection
 const topicSchema = new Schema({
-  name: String,
-  category: String,
-  type: String,
-  difficulty: String,
-  question: String,
-  correct_answer: String,
-  incorrect_answers: Array,
+  category: { type: String, required: true },
+  type: { type: String, required: true },
+  difficulty: { type: String, required: true },
+  question: { type: String, required: true },
+  correct_answer: { type: String, required: true },
+  incorrect_answers: { type: [String], required: true },
 });
 
 const Topic = mongoose.model('topic', topicSchema);
 
-module.exports = {
-    Topic
-  };
+module.exports = Topic;
