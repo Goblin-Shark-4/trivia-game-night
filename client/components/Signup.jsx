@@ -37,6 +37,31 @@ export default function SignUp({ setLoggedIn }) {
       
     }
 
+    const handleCreateAccount = () => {
+      fetch('/sign-up', {
+          method: 'POST',
+          headers: {
+              'Content-Type':
+              'application/json'
+          },
+          body: JSON.stringify({
+              username, password, location
+          })
+      })
+      .then(res => {
+          if (res.ok) {
+              res.json()
+              .then(data => {
+                  localStorage.setItem('triviaJwtToken', data.jwtToken);
+                  setLoggedIn(true);
+                  return navigate('/');
+              })
+              .catch(err => console.error(err))
+          }
+      })
+      .catch(err => console.error(err))
+  }
+
   return (
     <div className='login'>
       <h1 className='logTitle'>Goblin Sharks Trivia</h1>
@@ -59,6 +84,7 @@ export default function SignUp({ setLoggedIn }) {
         ></input>
         <div>
           <button onClick={handleSignUp}>Login</button>
+          <button className='createAcct' onClick={handleCreateAccount}>Create Account</button>
         </div>
       </div>
     </div>

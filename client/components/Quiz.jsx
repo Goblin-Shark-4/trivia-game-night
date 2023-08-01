@@ -8,7 +8,7 @@ import Scoreboard from './Scoreboard'
 import WinCondition from './Wincondition'
 // import ResetQuiz from './ResetQuiz'
 
-const Quiz = ({user}) => {
+const Quiz = ({user, setUser}) => {
   const [quizQuestions, setQuizQuestions] = useState([]);
   const [questionState, setQuestion] = useState({});
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
@@ -51,11 +51,15 @@ const Quiz = ({user}) => {
       setScore((prevScore) => prevScore + points[question.difficulty]);
       navigate('/');
     }
+    else {
+      alert("Wrong answer!")
+      navigate('/')
+    }
   }
   
   const handleDeleteAccount = () => {
     fetch('/delete', {
-      method: 'POST',
+      method: 'DELETE',
       headers: {
         'Content-Type':
         'application/json',
@@ -67,13 +71,16 @@ const Quiz = ({user}) => {
     .then(res => {
       console.log(`account for ${user.username} has been deleted`);
       localStorage.removeItem('triviaJwtToken');
-      navigate('/log-in')
+      setUser({});
+      navigate('/');
     })
     .catch(err => console.error(err))
   }
 
   const handleLogOut = () => {
-    return;
+    localStorage.removeItem('triviaJwtToken');
+    setUser({});
+    navigate('/');
   }
 
   useEffect(() => {

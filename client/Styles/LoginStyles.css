@@ -43,3 +43,7 @@ button {
 button:hover {
   background-color: #4800b3;
 }
+
+.createAcct {
+  margin-top: 2em;
+}
