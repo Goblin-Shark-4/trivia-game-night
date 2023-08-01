@@ -42,7 +42,7 @@ const App = (props) => {
         <Routes>
           {/* <Route path="/*" element={<Quiz />}/> */}
 
-          <Route path="/*" element={user.username ? <Quiz user={user} /> : <SignUp setLoggedIn={setLoggedIn} />}/>
+          <Route path="/*" element={user.username ? <Quiz user={user} setUser={setUser} /> : <SignUp setLoggedIn={setLoggedIn} />}/>
         </Routes>
       </Router>
     </div>

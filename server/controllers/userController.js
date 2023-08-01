@@ -36,11 +36,12 @@ userController.verifyUser = (req, res, next) => {
 
 
 userController.addUser = (req, res, next) => {
-    const { username, password, location } = req.body;
+    const { username, password } = req.body;
 
-    User.create({ username, password, location })
+    User.create({ username, password })
     .then((user) => {
-        res.locals.newUser = user;
+        res.locals.user = user;
+        console.log('afsdfsdf')
         return next();
     })
     .catch(err => next({
