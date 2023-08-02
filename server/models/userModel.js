@@ -10,7 +10,7 @@ const userSchema = new Schema({
   location: { type: String },
 });
 
-userSchema.pre('save', (next) => {
+userSchema.pre('save', function (next) {
   if (!this.isModified('password')) return next();
 
   bcrypt.hash(this.password, SALT_WORK_FACTOR, (err, hash) => {
