@@ -9,6 +9,8 @@ import WinCondition from './Wincondition';
 // import ResetQuiz from './ResetQuiz'
 
 const Quiz = ({ user, setUser }) => {
+
+  console.log("quiz -----------------------------------------------")
   const navigate = useNavigate();
   //States
   const [playerTurn, setPlayerTurn] = useState(1);
@@ -101,6 +103,7 @@ const Quiz = ({ user, setUser }) => {
     fetch('/questions')
       .then((response) => response.json())
       .then((data) => {
+       // console.log('data', data);
         setQuizQuestions(data);
         setNewGame(false);
       })
