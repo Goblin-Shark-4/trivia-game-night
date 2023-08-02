@@ -1,11 +1,9 @@
 /* Add your overall styling for the App component here */
 
-
-
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Questrial&family=Rubik:wght@300;400;500;600;700;800&display=swap');
 
 * {
   box-sizing: border-box;
-
 }
 
 #quiz {
@@ -15,7 +13,7 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Questrial', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -28,11 +26,12 @@ body {
   padding: 20px;
 }
 
-.header {
+header {
   text-align: center;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+  color: white;
 }
 
 .game-board {
@@ -47,19 +46,23 @@ body {
 .category {
   background-color: #007bff;
   color: #fff;
-  padding: 10px;;
+  padding: 10px;
   text-align: center;
   font-weight: bold;
   font-size: 28px;
   border-radius: 10px;
-
 }
 
 .question-card {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 123, 255, 0.7); /* Set the alpha value to 0 for full transparency */
+  background-color: rgba(
+    0,
+    123,
+    255,
+    0.7
+  ); /* Set the alpha value to 0 for full transparency */
   color: #fff;
   text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
   /* padding: 20px; */
@@ -74,35 +77,45 @@ body {
   transform: rotateY(180deg);
 }
 
-.front, .back {
+.front,
+.back {
   width: 100%;
 }
 
 .back {
   display: flex;
   flex-direction: column;
-  
 }
 
 .back p {
   margin: 10px 0;
 }
 
-
 main {
   display: flex;
-
+  flex-direction: column-reverse;
+  align-items: center;
 }
 
 #scoreboard {
   padding: 1em;
+  display: flex;
+  background: linear-gradient(to right, rgb(173, 83, 137), rgb(60, 16, 83));
+  width: 100%;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  border-radius: 5px;
+  font-family: 'Bungee Spice', sans-serif;
+  justify-content: space-evenly;
+  margin: 2em 0;
+  padding: 0.5em;
 }
 
-h1, h2 {
+/* h1,
+h2 {
   color: white;
 }
 
 h1 {
   padding-left: 1em;
-}
-
+} */
