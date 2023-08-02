@@ -3,64 +3,65 @@ const bcrypt = require('bcryptjs');
 
 const userController = {};
 
-userController.verifyUser = (req, res, next) => {
-    console.log('hello')
-    const { username, password } = req.body;
+userController.verifyUser = async (req, res, next) => {
+  const { username, password } = req.body;
+  try {
+    // verify that user exists in DB
+    const user = await User.findOne({ username });
+    if (!user) return res.sendStatus(200);
+    res.locals.user = user;
 
-    User.findOne({username})
-    .then((user) => {
-        if (user === null) return res.status(200).json({})
-        res.locals.user = user;
-        bcrypt.compare(password, user.password)
-        .then(match => {
-            console.log('match', match);
-            return match ? next()
-            : next({
-                log: `Express error in userController.verifyUser: invalid password`,
-                status: 400,
-                message: { err: `An error occurred in userController.verifyUser: invalid password` }
-            })
-        })
-        .catch(err => next({
-                log: `Express error in userController.verifyUser: ${err}`,
-                status: 400,
-                message: { err: 'An error occurred in userController.verifyUser' },
-        }))
-    })
-    .catch(err => next({
-            log: `Express error in userController.verifyUser: ${err}`,
-            status: 400,
-            message: { err: 'An error occurred in userController.verifyUser' },
-    }));
+    // verify that password is valid using bcrypt
+    const match = await bcrypt.compare(password, user.password);
+    return match
+      ? next()
+      : next({
+          log: `Express error handler caught an error at userController.verifyUser: ${err}`,
+          message: {
+            err: 'An error occurred with verifying your credentials.',
+          },
+        });
+  } catch (err) {
+    return next({
+      log: `Express error handler caught an error at userController.verifyUser: ${err}`,
+      message: { err: 'An error occurred with verifying your credentials.' },
+    });
+  }
 };
 
-
-userController.addUser = (req, res, next) => {
-    const { username, password } = req.body;
-
-    User.create({ username, password })
-    .then((user) => {
-        res.locals.user = user;
-        console.log('afsdfsdf')
-        return next();
-    })
-    .catch(err => next({
-        log: `Express middleware error in userController.createUser: ${err}`,
-        status: 400,
-        message: { err: 'An error occurred in userController.createUser' },
-    }));
+userController.addUser = async (req, res, next) => {
+  const { username, password } = req.body;
+  try {
+    // create user in DB
+    const user = await User.create({ username, password });
+    res.locals.user = user;
+    return next();
+  } catch (err) {
+    return next({
+      log: `Express error handler caught an error at userController.addUser: ${err}`,
+      message: { err: 'An error occurred with signing you up.' },
+    });
+  }
 };
 
-userController.deleteUser = (req, res, next) => {
-    const { username } = req.body;
-    console.log('username', username)
+userController.deleteUser = async (req, res, next) => {
+  const { username } = req.body;
+  try {
+    // delete user from DB
+    const deletedUser = await User.deleteOne({ username });
 
-    User.deleteOne({username})
-    .then(res => {
-        console.log('res', res);
-        return next();
-    })
-    .catch(err => next({}))
-}
+    // if user exists in DB, send success message
+    // otherwise, send failure message
+    if (deletedUser.deletedCount === 0)
+      res.locals.deleteMessage = `We could not find a user with the username ${username}.`;
+    else res.locals.deleteMessage = 'You successfully deleted your account.';
+    return next();
+  } catch (err) {
+    return next({
+      log: `Express error handler caught an error at userController.deleteUser: ${err}`,
+      message: { err: 'An error occurred with deleting your account.' },
+    });
+  }
+};
 
 module.exports = userController;
