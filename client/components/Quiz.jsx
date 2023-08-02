@@ -9,19 +9,21 @@ import WinCondition from './Wincondition';
 // import ResetQuiz from './ResetQuiz'
 
 const Quiz = ({ user, setUser }) => {
+  const navigate = useNavigate();
+  //States
   const [quizQuestions, setQuizQuestions] = useState([]);
-  const [questionState, setQuestion] = useState({});
+  const [questionState, setQuestionState] = useState({});
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
   const [score, setScore] = useState(0);
-  const points = { easy: 1000, medium: 3000, hard: 5000 };
-  const navigate = useNavigate();
   const [hasWon, setHasWon] = useState(false);
   const [newGame, setNewGame] = useState(false);
+  //Points
+  const points = { easy: 1000, medium: 3000, hard: 5000 };
 
   const resetGame = () => {
     console.log('reset game');
     setQuizQuestions([]);
-    setQuestion({});
+    setQuestionState({});
     setAnsweredQuestions([]);
     setScore(0);
     setHasWon(false);
@@ -29,6 +31,7 @@ const Quiz = ({ user, setUser }) => {
     navigate('/');
   };
 
+  //check if user won by checking every time score changes, redirect to /win
   useEffect(() => {
     if (score >= 10000) {
       setHasWon(true);
@@ -37,9 +40,9 @@ const Quiz = ({ user, setUser }) => {
   }, [score]);
 
   // const { sports, film, geography, music, television}  = quizQuestions;
-
+  
   const handleQuestionClick = (question) => {
-    setQuestion(question);
+    setQuestionState(question);
     setAnsweredQuestions((prev) => [...prev, question.question]);
     navigate('/card');
   };
@@ -113,7 +116,8 @@ const Quiz = ({ user, setUser }) => {
             <Scoreboard score={score} />
           </h2>
         </nav>
-
+        
+{/* conditionally load based on user actions. Either loads quizboard, win, or the selected card */}
         <Routes>
           <Route
             path={'/'}
@@ -124,12 +128,13 @@ const Quiz = ({ user, setUser }) => {
                     <div className='category'>{category}</div>
                     {quizQuestions[category].map(
                       (question, i) =>
+                      //check if a question was already answered from the quizQuestions[category] array. If yes, then display empty card. If not, display card.
                         (!answeredQuestions.includes(question.question) && (
                           <QuestionCard
                             key={crypto.randomUUID()}
                             question={question}
-                            handleQuestionClick={handleQuestionClick}
-                            setQuestion={setQuestion}
+                            handleQuestionClick={handleQuestionClick}//passing down the handleQuestionClick to QuestionCard
+                            setQuestionState={setQuestionState}
                           />
                         )) || <div className='question-card'></div>
                     )}
