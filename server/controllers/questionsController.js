@@ -14,14 +14,14 @@ questionsController.getQuestions = (req, res, next) => {
       const medium = await Topic.aggregate([{ $match: {category: category, difficulty: 'medium'} }, { $sample: { size: 2 } }])
       const high = await Topic.aggregate([{ $match: {category: category, difficulty: 'hard'} }, { $sample: { size: 1 } }])
       questions[category] = [...easy, ...medium, ...high];
-      console.log(questions)
+      
     } catch (err) {
       return next({})
     }
   }))
   .then(() => {
     res.locals.questions = questions;
-    console.log(questions, res.locals, 'zzzzz')
+    // console.log(questions, res.locals, 'zzzzz')
     return next();
   })
   .catch((err) => console.error(err))

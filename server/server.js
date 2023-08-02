@@ -6,6 +6,10 @@ const mongoose = require('mongoose');
 const questionsController = require('./controllers/questionsController');
 const authController = require('./controllers/authController');
 const userController = require('./controllers/userController');
+//const http = require('http');
+//const Websocket = require('ws')
+//const server = http.createServer(app);
+//const server = new WebSocket.Server({server});
 const cors = require('cors');
 require('dotenv').config();
 
