@@ -1,11 +1,12 @@
 .login {
   max-width: 400px;
-  margin: 20px auto;
+  margin: 35%;
+  margin-top: 15%;
   padding: 20px;
-  border: 2px solid #4800b3;
+  border: 0.5px solid #00337b;
   border-radius: 5px;
-  background-color: rgba(200, 200, 200, 0);
-  box-shadow: 0 0 10px #f200fffb, 0 0 20px #d400ff, 0 0 30px #9500ff; ;
+  /* background-color: rgba(198, 109, 109, 0); */
+  box-shadow: 0 0 10px #7bbdfffb, 0 0 20px #264bb8, 0 0 30px #4589ff;
 }
 
 .logTitle {
@@ -13,7 +14,12 @@
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
-  background-color: rgba(41, 52, 103, 0); /* Set the alpha value to 0 for full transparency */
+  background-color: rgba(
+    41,
+    52,
+    103,
+    0
+  ); /* Set the alpha value to 0 for full transparency */
   color: #fff;
   text-shadow: 0 0 10px #00aeff, 0 0 20px #0055ff, 0 0 30px #0088ff;
 }
@@ -33,7 +39,7 @@ button {
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #000ed9;
+  background-color: rgb(38, 76, 140);
   color: #fff;
   font-size: 16px;
   font-weight: bold;
@@ -41,7 +47,8 @@ button {
 }
 
 button:hover {
-  background-color: #4800b3;
+  background-color: rgb(71, 138, 255);
+  color: rgb(38, 76, 140);
 }
 
 .createAcct {

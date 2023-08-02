@@ -1,7 +1,10 @@
 /* Add your overall styling for the App component here */
 
+<<<<<<< HEAD
+=======
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Questrial&family=Rubik:wght@300;400;500;600;700;800&display=swap');
 
+>>>>>>> dev
 * {
   box-sizing: border-box;
 }
@@ -93,8 +96,11 @@ header {
 
 main {
   display: flex;
+<<<<<<< HEAD
+=======
   flex-direction: column-reverse;
   align-items: center;
+>>>>>>> dev
 }
 
 #scoreboard {
@@ -111,11 +117,19 @@ main {
   padding: 0.5em;
 }
 
+<<<<<<< HEAD
+h1,
+=======
 /* h1,
+>>>>>>> dev
 h2 {
   color: white;
 }
 
 h1 {
   padding-left: 1em;
+<<<<<<< HEAD
+}
+=======
 } */
+>>>>>>> dev
