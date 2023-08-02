@@ -9,13 +9,17 @@ import './Styles/App.css';
 
 const App = (props) => {
   const [user, setUser] = useState({});
+  //loggedIn checks whether a user is logged in, Signup will change the state causing a rerender
   const [loggedIn, setLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
 
   //check for JWT on page load, if user has JWT, send them to start page
   useEffect(() => {
     const jwtToken = localStorage.getItem('triviaJwtToken');
-    jwtToken ? fetchUserData(jwtToken) : setLoading(false);
+    if(jwtToken){
+      fetchUserData(jwtToken)
+    }
+    // jwtToken ? fetchUserData(jwtToken) : setLoading(false);
     setLoggedIn(false);
   }, [loggedIn]);
 
@@ -31,10 +35,10 @@ const App = (props) => {
     } else {
       localStorage.removeItem('triviaJwtToken');
     }
-    setLoading(false);
+    //setLoading(false);
   }
 
-  if (loading) return null;
+  //if (loading) return null;
 
   return (
     <div>

@@ -1,78 +1,81 @@
+// require modules
 const express = require('express');
-const app = express();
 const path = require('path');
-const port = process.env.PORT || 3000;
-const mongoose = require('mongoose');
-const questionsController = require('./controllers/questionsController');
-const authController = require('./controllers/authController');
-const userController = require('./controllers/userController');
-//const http = require('http');
-//const Websocket = require('ws')
-//const server = http.createServer(app);
-//const server = new WebSocket.Server({server});
 const cors = require('cors');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
-
-
-app.use(express.json());
-app.use(cors());
-app.use(cors({ origin: '/questions' }));
+// connect to MongoDB server
 mongoose
-  .connect(process.env.MONGO_URI,
-    {
-      useUnifiedTopology: true,
-
-      dbName: 'TriviaGameNight',
-    }
-  )
+  .connect(process.env.MONGO_URI, {
+    useUnifiedTopology: true,
+    dbName: 'TriviaGameNight',
+  })
   .then(() => console.log('Connected to Mongo DB.'))
   .catch((err) => console.log(err));
 
+// import controllers
+const questionsController = require('./controllers/questionsController');
+const authController = require('./controllers/authController');
+const userController = require('./controllers/userController');
+
+const PORT = process.env.PORT || 3000;
+const app = express();
+
+// global middleware
+app.use(express.json());
+app.use(cors());
+app.use(cors({ origin: '/questions' }));
 app.use(express.static(path.resolve(__dirname, '../build')));
 
-app.get('/verifyJwt', authController.verifyJwt, (req, res) => {
-  return res.status(200).json(res.locals.user)
-})
-
-app.post('/log-in', userController.verifyUser, authController.setJwtToken, (req, res) => {
-  return res.status(200).json(res.locals.secret)
-})
-
-app.post('/sign-up', userController.addUser, authController.setJwtToken, (req, res) => {
-  return res.status(200).json(res.locals.secret)
-})
-
-app.delete('/delete', userController.deleteUser, (req, res) => {
-  console.log('slafjks;')
-  return res.status(200).json({})
-})
-
-app.get('/questions', questionsController.getQuestions, (req, res) => {
-  console.log('Change', res.locals);
-  // console.log('get questions hi', res.locals.questions);
-
-  // //   return res.status(200).send(JSON.stringify(res.locals.questions));
-  // return res.status(200).json(JSON.stringify(res.locals.questions));
-  return res.status(200).json(res.locals.questions);
-});
-
-// catch-all route handler for any requests to an unknown route
-app.use((req, res) =>
-  res.status(404).send("This is not the page you're looking for...")
+// GET route: handle JWT
+app.get('/verifyJwt', authController.verifyJwt, (req, res) =>
+  res.status(200).json(res.locals.user)
 );
 
+// GET route: obtain questions from DB
+app.get('/questions', questionsController.getQuestions, (req, res) =>
+  res.status(200).json(res.locals.questions)
+);
+
+// POST route: login as an existing user
+app.post(
+  '/log-in',
+  userController.verifyUser,
+  authController.setJwtToken,
+  (req, res) => res.status(200).json(res.locals.secret)
+);
+
+// POST route: sign up for account
+app.post(
+  '/sign-up',
+  userController.addUser,
+  authController.setJwtToken,
+  (req, res) => res.status(200).json(res.locals.secret)
+);
+
+// DELETE route: delete account from database
+app.delete('/delete', userController.deleteUser, (req, res) =>
+  res.status(200).json(res.locals.deleteMessage)
+);
+
+// global unknown route handler
+app.use((req, res) =>
+  res.status(404).send(`This is not the page you're looking for...`)
+);
+
+// global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: 'Express error handler caught unknown error',
+    log: 'Express error handler caught an unknown error.',
     status: 500,
-    message: { err: 'An error occurred' },
+    message: { err: 'An error occurred.' },
   };
-  const errorObj = Object.assign({}, defaultErr, err);
+  const errorObj = { ...defaultErr, ...err };
   console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-app.listen(port, () => {
-  console.log('App listening on port: ' + port);
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}...`);
 });

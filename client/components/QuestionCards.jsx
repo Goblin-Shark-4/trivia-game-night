@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styles from '../Styles/QuestionCard.css';
 
 const shuffleArray = (array) => {
-
   const shuffledArray = [...array];
 
   for (let i = shuffledArray.length - 1; i > 0; i--) {
@@ -21,7 +20,9 @@ const QuestionCard = ({ question, handleQuestionClick, setQuestion }) => {
 
   // Shuffle the answers array to display them in random order
   const shuffledAnswers = shuffleArray(answers);
-  {/* onClick={() => setShowQuestion(!showQuestion)} */}
+  {
+    /* onClick={() => setShowQuestion(!showQuestion)} */
+  }
   return (
     <div
       className={'question-card'}
