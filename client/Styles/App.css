@@ -1,11 +1,7 @@
 /* Add your overall styling for the App component here */
 
-
-
-
 * {
   box-sizing: border-box;
-
 }
 
 #quiz {
@@ -47,19 +43,23 @@ body {
 .category {
   background-color: #007bff;
   color: #fff;
-  padding: 10px;;
+  padding: 10px;
   text-align: center;
   font-weight: bold;
   font-size: 28px;
   border-radius: 10px;
-
 }
 
 .question-card {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 123, 255, 0.7); /* Set the alpha value to 0 for full transparency */
+  background-color: rgba(
+    0,
+    123,
+    255,
+    0.7
+  ); /* Set the alpha value to 0 for full transparency */
   color: #fff;
   text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
   /* padding: 20px; */
@@ -74,35 +74,33 @@ body {
   transform: rotateY(180deg);
 }
 
-.front, .back {
+.front,
+.back {
   width: 100%;
 }
 
 .back {
   display: flex;
   flex-direction: column;
-  
 }
 
 .back p {
   margin: 10px 0;
 }
 
-
 main {
   display: flex;
-
 }
 
 #scoreboard {
   padding: 1em;
 }
 
-h1, h2 {
+h1,
+h2 {
   color: white;
 }
 
 h1 {
   padding-left: 1em;
 }
-
