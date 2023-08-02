@@ -42,17 +42,39 @@ body {
 }
 
 .scoreboard {
-  max-width: 400px;
+  /* max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(
-    41,
-    52,
-    103,
-    0
-  ); /* Set the alpha value to 0 for full transparency */
+  background-color: rgba(41, 52, 103, 0);
   color: #fff;
-  text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+  text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc; */
+  background: linear-gradient(
+    109.6deg,
+    rgb(0, 0, 0) 5.2%,
+    rgb(11, 132, 145) 91.1%
+  );
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 10px;
+  width: 35%;
+  text-align: center;
+  /* text-shadow: 1px 1px 0px rgba(255, 255, 255, 1),
+    1px 1px 0px rgba(0, 0, 0, 0.15); */
+  margin: 0.66em 0;
+}
+
+.scoreboard h2 {
+  margin: 0;
+  font-size: 2em;
+}
+
+.scoreboard .playerNumber {
+  margin-top: 0.35em;
+  font-size: 3.5em;
+}
+
+.scoreboard .score {
+  margin-bottom: 0.5em;
 }
 
 header {
@@ -68,6 +90,7 @@ header > div {
 #logOffBtn {
   border-radius: 5px;
   background-color: rgba(220, 220, 220, 0.8);
+  font-family: "Rubik", sans-serif;
 }
 
 #logOffBtn:hover {
@@ -79,6 +102,7 @@ header > div {
 #deleteAcctBtn {
   border-radius: 0 0 0 10px;
   background-color: rgba(220, 220, 220, 0.8);
+  font-family: "Rubik", sans-serif;
 }
 
 #deleteAcctBtn:hover {

@@ -129,11 +129,8 @@ const Quiz = ({ user, setUser }) => {
       </header>
       <main>
         <nav id='scoreboard'>
-          <h2>
-            {' '}
             <Scoreboard score={player1Score} playerNumber={1} />
             <Scoreboard score={player2Score} playerNumber={2} />
-          </h2>
         </nav>
 
         {/* conditionally load based on user actions. Either loads quizboard, win, or the selected card */}
