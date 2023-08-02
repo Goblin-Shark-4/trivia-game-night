@@ -11,10 +11,13 @@ import WinCondition from './Wincondition';
 const Quiz = ({ user, setUser }) => {
   const navigate = useNavigate();
   //States
+  const [playerTurn, setPlayerTurn] = useState(1);
+
   const [quizQuestions, setQuizQuestions] = useState([]);
   const [questionState, setQuestionState] = useState({});
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
-  const [score, setScore] = useState(0);
+  const [player1Score, setPlayer1Score] = useState(0);
+  const [player2Score, setPlayer2Score] = useState(0);
   const [hasWon, setHasWon] = useState(false);
   const [newGame, setNewGame] = useState(false);
   //Points
@@ -25,36 +28,48 @@ const Quiz = ({ user, setUser }) => {
     setQuizQuestions([]);
     setQuestionState({});
     setAnsweredQuestions([]);
-    setScore(0);
-    setHasWon(false);
+    setPlayer1Score(0);
+    setPlayer2Score(0);
+    setHasWon(false); // change the type of state this is --> determine p1 p2 winner
     setNewGame(true);
     navigate('/');
   };
 
   //check if user won by checking every time score changes, redirect to /win
   useEffect(() => {
-    if (score >= 10000) {
+    if (player1Score >= 10000) {
+      setPlayerTurn(1);
+      setHasWon(true);
+      navigate('/win');
+    } else if (player2Score >= 10000) {
+      setPlayerTurn(2);
       setHasWon(true);
       navigate('/win');
     }
-  }, [score]);
+  }, [player1Score, player2Score]);
 
   // const { sports, film, geography, music, television}  = quizQuestions;
-  
+
   const handleQuestionClick = (question) => {
     setQuestionState(question);
     setAnsweredQuestions((prev) => [...prev, question.question]);
     navigate('/card');
   };
 
-  const handleAnswerClick = (question, answer) => {
+  // INCREMENT SCORE (player is state of playerTurn)
+  const handleAnswerClick = (question, answer, player) => {
     if (question.correct_answer === answer) {
-      setScore((prevScore) => prevScore + points[question.difficulty]);
-      navigate('/');
+      if (player === 1) {
+        setPlayer1Score((prevScore) => prevScore + points[question.difficulty]);
+      } else {
+        setPlayer2Score((prevScore) => prevScore + points[question.difficulty]);
+      }
     } else {
       alert('Wrong answer!');
-      navigate('/');
     }
+    // this one's for John
+    player === 1 ? setPlayerTurn(2) : setPlayerTurn(1);
+    navigate('/');
   };
 
   const handleDeleteAccount = () => {
@@ -113,11 +128,12 @@ const Quiz = ({ user, setUser }) => {
         <nav id='scoreboard'>
           <h2>
             {' '}
-            <Scoreboard score={score} />
+            <Scoreboard score={player1Score} playerNumber={1} />
+            <Scoreboard score={player2Score} playerNumber={2} />
           </h2>
         </nav>
-        
-{/* conditionally load based on user actions. Either loads quizboard, win, or the selected card */}
+
+        {/* conditionally load based on user actions. Either loads quizboard, win, or the selected card */}
         <Routes>
           <Route
             path={'/'}
@@ -128,12 +144,12 @@ const Quiz = ({ user, setUser }) => {
                     <div className='category'>{category}</div>
                     {quizQuestions[category].map(
                       (question, i) =>
-                      //check if a question was already answered from the quizQuestions[category] array. If yes, then display empty card. If not, display card.
+                        //check if a question was already answered from the quizQuestions[category] array. If yes, then display empty card. If not, display card.
                         (!answeredQuestions.includes(question.question) && (
                           <QuestionCard
                             key={crypto.randomUUID()}
                             question={question}
-                            handleQuestionClick={handleQuestionClick}//passing down the handleQuestionClick to QuestionCard
+                            handleQuestionClick={handleQuestionClick} //passing down the handleQuestionClick to QuestionCard
                             setQuestionState={setQuestionState}
                           />
                         )) || <div className='question-card'></div>
@@ -152,6 +168,7 @@ const Quiz = ({ user, setUser }) => {
                 question={questionState}
                 handleAnswerClick={handleAnswerClick}
                 points={points[questionState.difficulty]}
+                playerTurn={playerTurn}
               />
             }
           />
@@ -159,9 +176,9 @@ const Quiz = ({ user, setUser }) => {
             path={'/win'}
             element={
               <WinCondition
-                score={score}
                 resetGame={resetGame}
                 hasWon={hasWon}
+                playerTurn={playerTurn}
               />
             }
           />
