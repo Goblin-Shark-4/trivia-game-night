@@ -8,6 +8,8 @@
   cursor: pointer;
   transition: transform 0.4s;
   perspective: 1000px; /* Add perspective for 3D effect */
+  min-width: 115px;
+  min-height: 115px;
 }
 
 .question-card .front,
@@ -41,7 +43,6 @@
   text-shadow: 0 0 10px #007bff, 0 0 20px #007bff, 0 0 30px #007bff;
   /* Add more text-shadow layers to increase the glow effect */
 }
-
 
 .question-card.flipped {
   transform: rotateY(180deg);

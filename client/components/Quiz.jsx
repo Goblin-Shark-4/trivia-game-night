@@ -8,11 +8,10 @@ import Scoreboard from './Scoreboard';
 import WinCondition from './Wincondition';
 // import ResetQuiz from './ResetQuiz'
 
-const Quiz = ({ user, setUser }) => {
-
-  console.log("quiz -----------------------------------------------")
+function Quiz({ user, setUser }) {
+  console.log('quiz -----------------------------------------------');
   const navigate = useNavigate();
-  //States
+  // States
   const [playerTurn, setPlayerTurn] = useState(1);
 
   const [quizQuestions, setQuizQuestions] = useState([]);
@@ -22,7 +21,7 @@ const Quiz = ({ user, setUser }) => {
   const [player2Score, setPlayer2Score] = useState(0);
   const [hasWon, setHasWon] = useState(false);
   const [newGame, setNewGame] = useState(false);
-  //Points
+  // Points
   const points = { easy: 1000, medium: 3000, hard: 5000 };
 
   const resetGame = () => {
@@ -37,7 +36,7 @@ const Quiz = ({ user, setUser }) => {
     navigate('/');
   };
 
-  //check if user won by checking every time score changes, redirect to /win
+  // check if user won by checking every time score changes, redirect to /win
   useEffect(() => {
     if (player1Score >= 10000) {
       setPlayerTurn(1);
@@ -103,7 +102,7 @@ const Quiz = ({ user, setUser }) => {
     fetch('/questions')
       .then((response) => response.json())
       .then((data) => {
-       // console.log('data', data);
+        // console.log('data', data);
         setQuizQuestions(data);
         setNewGame(false);
       })
@@ -115,20 +114,23 @@ const Quiz = ({ user, setUser }) => {
   if (!Object.keys(quizQuestions).length) return;
 
   return (
-    <div id='quiz'>
+    <div id="quiz">
       <header>
-        <h1>WELCOME, {user.username.toUpperCase()}</h1>
+        <h1>
+          WELCOME,
+          {user.username.toUpperCase()}
+        </h1>
         <div>
-          <button id='logOffBtn' onClick={handleLogOut}>
+          <button id="logOffBtn" onClick={handleLogOut}>
             LOG OUT
           </button>
-          <button id='deleteAcctBtn' onClick={handleDeleteAccount}>
+          <button id="deleteAcctBtn" onClick={handleDeleteAccount}>
             DELETE ACCOUNT
           </button>
         </div>
       </header>
       <main>
-        <nav id='scoreboard'>
+        <nav id="scoreboard">
           <h2>
             {' '}
             <Scoreboard score={player1Score} playerNumber={1} />
@@ -139,23 +141,23 @@ const Quiz = ({ user, setUser }) => {
         {/* conditionally load based on user actions. Either loads quizboard, win, or the selected card */}
         <Routes>
           <Route
-            path={'/'}
+            path="/"
             element={
-              <div className='jeopardy-board'>
+              <div className="jeopardy-board">
                 {Object.keys(quizQuestions).map((category, i) => (
-                  <div className='questions'>
-                    <div className='category'>{category}</div>
+                  <div className="questions">
+                    <div className="category">{category}</div>
                     {quizQuestions[category].map(
                       (question, i) =>
-                        //check if a question was already answered from the quizQuestions[category] array. If yes, then display empty card. If not, display card.
+                        // check if a question was already answered from the quizQuestions[category] array. If yes, then display empty card. If not, display card.
                         (!answeredQuestions.includes(question.question) && (
                           <QuestionCard
                             key={crypto.randomUUID()}
                             question={question}
-                            handleQuestionClick={handleQuestionClick} //passing down the handleQuestionClick to QuestionCard
+                            handleQuestionClick={handleQuestionClick} // passing down the handleQuestionClick to QuestionCard
                             setQuestionState={setQuestionState}
                           />
-                        )) || <div className='question-card'></div>
+                        )) || <div className="question-card" />,
                     )}
                   </div>
                 ))}
@@ -164,7 +166,7 @@ const Quiz = ({ user, setUser }) => {
           />
 
           <Route
-            path={'/card'}
+            path="/card"
             element={
               <Question
                 key={crypto.randomUUID()}
@@ -176,19 +178,13 @@ const Quiz = ({ user, setUser }) => {
             }
           />
           <Route
-            path={'/win'}
-            element={
-              <WinCondition
-                resetGame={resetGame}
-                hasWon={hasWon}
-                playerTurn={playerTurn}
-              />
-            }
+            path="/win"
+            element={<WinCondition resetGame={resetGame} hasWon={hasWon} playerTurn={playerTurn} />}
           />
         </Routes>
       </main>
     </div>
   );
-};
+}
 
 export default Quiz;
