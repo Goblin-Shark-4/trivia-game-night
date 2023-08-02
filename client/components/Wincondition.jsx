@@ -6,7 +6,7 @@ import Music from '../assets/CongratulationsSnip.mp3';
 
 const WinCondition = ({ resetGame, hasWon, playerTurn }) => {
   // console.log(resetGame);
-  const [play, { stop }] = useSound(Music);
+  const [play, { stop }] = useSound(Mus, {volume: 0.1});
 
   useEffect(() => {
     if (hasWon) {
