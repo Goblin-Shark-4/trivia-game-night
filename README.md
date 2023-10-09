@@ -7,8 +7,6 @@ This is a web-based trivia game created using React, JavaScript, and CSS.
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Overview
 
@@ -16,8 +14,10 @@ Trivia Game Night was created to provide great entertainment to users, fetching 
 
 ## Features
 
-- [List the key features and functionalities of your trivia game.]
-- [Include screenshots or GIFs to showcase your game in action.]
+- User creation using Oath, login and logout.
+- 5 categories of questions.
+- Interactive sounds as you play the game.
+- Scoreboard implementation with winning functionality.
 
 ## Installation
 
@@ -53,23 +53,13 @@ Copy code
 
 2. Open your web browser and visit [http://localhost:3000](http://localhost:3000) to play the trivia game.
 
-[Provide any additional instructions or information needed to use your game.]
-
 ## Technologies Used
 
 - React
 - JavaScript
 - CSS
-- [List any additional libraries, APIs, or tools you used.]
+- Webpack
 
-## Contributing
-
-[Explain how others can contribute to your project, if applicable. Include information about how to report issues or submit pull requests.]
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-Remember to replace the placeholders in square brackets with your specific project details. Additionally, provide any necessary documentation, explanations, or screenshots to make it easy for others to understand and use your trivia game.
 
 
 
